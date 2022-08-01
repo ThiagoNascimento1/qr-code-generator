@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 // Types
 type Props = {
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleSubmit: (url: string) => void;
     setShowCode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -20,18 +20,18 @@ export const InputArea = ({ handleSubmit, setShowCode }: Props) => {
     };
 
     return (
-        <C.Form onSubmit={(e) => handleSubmit(e)}>
+        <C.Form>
             <input
                 type="text"
                 className="url"
                 placeholder="insira a URL"
                 autoComplete="false"
-                autoCorrect="false"
+                spellCheck="false"
                 value={url}
                 onChange={e => setUrl(e.target.value)}
                 onClick={() => handleClearSource()}
             />
-            <button>Gerar QRCode</button>
+            <button onClick={() => handleSubmit(url)}>Gerar QRCode</button>
         </C.Form>
     )
 };
